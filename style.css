@@ -21,13 +21,13 @@ body {
 /* Tablet + Mobile Fix */
 @media (max-width: 768px) {
   .sidebar {
-    position: relative;   /* fixed থাকলে scroll হয় */
-    width: 100%;          /* পুরো স্ক্রিনে নেবে */
-    height: auto;         /* height স্বাভাবিক হবে */
+    position: relative;
+    width: 100%;        
+    height: auto;         
   }
 
   .main-content {
-    margin-left: 0;       /* content চাপা পড়বে না */
+    margin-left: 0;  
     padding: 20px;
   }
 }
@@ -63,23 +63,92 @@ body {
 .socials a { color: #9ca3af; font-size: 22px; transition: .3s; }
 .socials a:hover { color: #10b981; }
 
-/* Right Nav */
-.side-nav {
-  position: fixed;
-  right: 20px; top: 50%;
-  transform: translateY(-50%);
-  display: flex;
-  flex-direction: column;
-  gap: 20px;
-  font-size: 22px;
-  z-index: 1000;
-}
-.side-nav a { color: #d1d5db; transition: .3s; }
-.side-nav a:hover { color: #10b981; }
+  /* Desktop nav (side) */
+    .side-nav {
+      position: fixed;
+      right: 20px; 
+      top: 50%;
+      transform: translateY(-50%);
+      display: flex;
+      flex-direction: column;
+      gap: 20px;
+      font-size: 22px;
+      z-index: 1000;
+    }
+    .side-nav a { color: #d1d5db; transition: .3s; text-decoration: none; }
+    .side-nav a:hover { color: #10b981; }
+
+    /* Mobile nav hidden by default */
+    .mobile-nav {
+      position: fixed;
+      top: 0; 
+      right: -100%;  /* hide in right side */
+      width: 70%;
+      height: 100vh;
+      background: #1f2937;
+      padding-top: 60px;
+      display: flex;
+      flex-direction: column;
+      gap: 25px;
+      align-items: center;
+      transition: .3s ease;
+      z-index: 1001;
+    }
+    .mobile-nav.show {
+      right: 0; /* show from right */
+    }
+    .mobile-nav a {
+      color: #d1d5db;
+      font-size: 20px;
+      text-decoration: none;
+    }
+    .mobile-nav a:hover {
+      color: #10b981;
+    }
+
+    /* Overlay */
+    .overlay {
+      position: fixed;
+      top: 0; left: 0;
+      width: 100%; height: 100%;
+      background: rgba(0,0,0,0.6);
+      opacity: 0;
+      pointer-events: none;
+      transition: .3s ease;
+      z-index: 1000;
+    }
+    .overlay.show {
+      opacity: 1;
+      pointer-events: auto;
+    }
+
+    /* Hamburger button */
+    .menu-btn {
+      display: none;
+      position: fixed;
+      top: 15px; 
+      right: 15px;
+      background: #1f2937;
+      color: #fff;
+      font-size: 28px;
+      padding: 8px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      z-index: 1002;
+    }
+
+    @media (max-width: 768px) {
+      .side-nav {
+        display: none; /* hide side nav */
+      }
+      .menu-btn {
+        display: block;
+      }
+    }
 
 /* Main Content */
 .main-content {
-  margin-left: 260px;
+  margin-left: 220px;
   padding: 50px;
 }
 
@@ -105,6 +174,9 @@ body {
   font-weight: bold;
 }
 .btn:hover { background: #34d399; }
+.hero img{
+  width:20%;
+}
 
 /* Stats */
 .stats {
@@ -177,27 +249,7 @@ body {
     width: 100px;
     height: 100px;
   }
+  .hero img{
+  width:100%;
 }
-
-
-@media (max-width: 768px) {
-  .side-nav {
-    position: fixed;
-    left: 0;
-    width: 100%;
-    transform: none;
-    flex-direction: row;
-    justify-content: space-around;
-    align-items: center;
-    background: #1f2937;
-    padding: 0px 0;
-    border-top-left-radius: 15px;
-    border-top-right-radius: 15px;
-    gap: 0;
-    font-size: 20px;
-    z-index: 1000;
-    margin-top: 125px;
-  }
 }
-
-
